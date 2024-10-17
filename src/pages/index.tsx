@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const matchData = [
   {
@@ -51,7 +51,7 @@ const matchData = [
     linkTeam1: "https://www.betfair.com/tottenham",
     linkTeam2: "https://www.mrgreen.com/westham"
   }
-]
+];
 
 const testimonials = [
   {
@@ -72,7 +72,7 @@ const testimonials = [
     content: "Even as a casual bettor, I find the insights here incredibly useful. It's user-friendly and informative.",
     avatar: "/avatar3.png"
   }
-]
+];
 
 export default function LandingPage() {
   return (
@@ -179,12 +179,21 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-function TeamOdds({ team, odds, bookmaker, expectedReturn, logo, link }) {
-  const [betAmount, setBetAmount] = useState(10)
-  const ev = betAmount * (odds - 1)
+interface TeamOddsProps {
+  team: string;
+  odds: number;
+  bookmaker: string;
+  expectedReturn: number;
+  logo: string;
+  link: string;
+}
+
+function TeamOdds({ team, odds, bookmaker, expectedReturn, logo, link }: TeamOddsProps) {
+  const [betAmount, setBetAmount] = useState<number>(10);
+  const ev = betAmount * (odds - 1);
 
   return (
     <Link href={link} className="block">
@@ -193,7 +202,9 @@ function TeamOdds({ team, odds, bookmaker, expectedReturn, logo, link }) {
           <Image src={logo} alt={`${team} logo`} width={24} height={24} className="mr-2" />
           <h4 className="font-semibold text-gray-800">{team}</h4>
         </div>
-        <p className="text-sm text-gray-600">Best odds: <span className="font-bold text-gray-800">{odds.toFixed(2)}</span> from {bookmaker}</p>
+        <p className="text-sm text-gray-600">
+          Best odds: <span className="font-bold text-gray-800">{odds.toFixed(2)}</span> from {bookmaker}
+        </p>
         <p className="text-sm text-gray-600">
           Expected return on $10 bet: <span className="font-bold text-gray-800">${expectedReturn.toFixed(2)}</span>
         </p>
@@ -220,5 +231,5 @@ function TeamOdds({ team, odds, bookmaker, expectedReturn, logo, link }) {
         </div>
       </div>
     </Link>
-  )
+  );
 }
